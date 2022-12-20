@@ -1,0 +1,51 @@
+# fly.toml file generated for memos
+
+app = "memos_example"                                               # change to whatever name you want if the name is not occupied
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  image = "hu3rror/memos-fly:latest"                                # Do not change unless you build your own image
+
+[env]
+  DB_PATH = "/var/opt/memos/memos_prod.db"                          # do not change
+
+  # Details see: https://litestream.io/guides/backblaze/
+  LITESTREAM_REPLICA_BUCKET = "your_bucket_name"                    # change to your litestream bucket name
+  LITESTREAM_REPLICA_ENDPOINT = "s3.us-west-000.backblazeb2.com"    # change to your litestream endpoint url
+  LITESTREAM_REPLICA_PATH = "memos_prod.db"                         # keep the default or change to whatever path you want
+
+[mounts]
+  source="memos_data"                                               # change to your fly.io volume name
+  destination="/var/opt/memos"                                      # do not change
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 5230                                              # change to port 5230
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
