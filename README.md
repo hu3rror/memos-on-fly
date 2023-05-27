@@ -1,5 +1,7 @@
 # memos on fly
 
+[English](README.md) | [中文](README_CN.md)
+
 > Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
 
 🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it.
@@ -7,8 +9,8 @@
 ## Prerequisites
 
   - [fly.io](https://fly.io/) account
-  - [backblaze](https://www.backblaze.com/) account or other B2 service account 
-  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build).*
+  - [Backblaze](https://www.backblaze.com/) account or other B2 service account 
+  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).*
 
 ## Install flyctl
 
@@ -38,7 +40,7 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
 
   ```toml
   [build]
-    image = "hu3rror/memos-fly:latest"
+    image = "ghcr.io/hu3rror/memos-litestream:latest"
   ```
 
 #### 2. Add an `env` section.
@@ -75,16 +77,17 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
 
   2. Attach the persistent volume to the container by adding a `mounts` section to `fly.toml`.
       ```toml
-      [mounts]
-        source="memos_data"
-        destination="/var/opt/memos"
+      [[mounts]]
+        source = "memos_data"
+        destination = "/var/opt/memos"
+        processes = ["app"]
       ```
 
-#### 5. Change `internal_port` in `[[services]]`
+#### 5. Add `internal_port` to `[[services]]`
 
 ```toml
 [[services]]
-  internal_port = 5230
+  internal_port = 5230     # change to `5230`
 ```
 
 #### 6. Deploy to fly.io
