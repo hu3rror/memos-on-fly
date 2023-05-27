@@ -1,6 +1,6 @@
 # memos on fly.io
 
-[English](README.md) | [中文](README_CN.md)
+[English](README.md) | 中文
 
 > 在[fly.io](https://fly.io/)上运行自托管的 [memos](https://github.com/usememos/memos)，并附有 [litestream](https://litestream.io/)自动备份数据库到你个人的 S3 / [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)。
 
@@ -111,11 +111,11 @@
 
 ## 完成了！
 
-🎊 尽情使用memos吧！
+🎊 尽情使用 memos 吧！
 
 ## 其他
 
-### 如何更新到最新的memos版本
+### 如何更新到最新的 memos 版本
 
 如果最新的 docker 镜像已经发布到 Docker Hub，您可以通过在项目文件夹中运行`flyctl deploy`来轻松升级memos。
 
@@ -133,7 +133,7 @@
 
 Litestream 通过将其 [WAL（Write-ahead logging）](https://en.wikipedia.org/wiki/Write-ahead_logging) 持久化到B2上的备份来实现数据持久化。如果您想验证备份是否正常工作，可以手动模拟故障并恢复。
 
-1. 在 fly.io 的控制台中，使用"Stop"按钮停止您的应用程序。
+1. 在 fly.io 的控制台中，使用 "Stop" 按钮停止您的应用程序。
 2. 更改您的 `memos` 数据库中的某些数据。
 3. 使用 "Start" 按钮重新启动应用程序。
 4. 检查您的更改是否仍然存在。如果是，则意味着已经成功数据持久化。
@@ -141,7 +141,7 @@ Litestream 通过将其 [WAL（Write-ahead logging）](https://en.wikipedia.org/
 如果您想测试持久卷的扩展，请按照以下步骤操作：
 
 1. 使用 `flyctl volumes resize` 命令来增加持久卷的大小。
-2. 使用 SSH 连接到您的 VM，然后运行以下命令来扩展文件系统。
+2. 使用 SSH 连接到您的 fly.io VM，然后运行以下命令来扩展文件系统。
    ```sh
    cd memos-on-fly
    fly ssh console
