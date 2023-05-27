@@ -23,8 +23,9 @@ If you have used this image before, you can simply change the build image sectio
 +  image = "ghcr.io/hu3rror/memos-litestream:latest"
 ```
 
+The new image is universal for both fly.io and local runs~
 
-## Install flyctl
+## Installation
 
 1. Follow [the instructions](https://fly.io/docs/getting-started/installing-flyctl/) to install fly's command-line interface `flyctl`.
 2. [log into flyctl](https://fly.io/docs/getting-started/log-in-to-fly/).

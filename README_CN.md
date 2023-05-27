@@ -16,7 +16,7 @@
 ### ⚠️ **警告**
 [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 将在不久的将来被弃用，维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
-如果你以前使用过这个镜像，你可以简单地将你的 fly.toml 中 build image 部分删除旧的镜像，并改为新的镜像，像这样：
+如果你以前使用过这个镜像，你可以简单地在你的 fly.toml 中的 build image 部分中删除旧的镜像，并改为新的镜像，像这样：
 
 ```diff
 [build]
@@ -24,7 +24,7 @@
 + image = "ghcr.io/hu3rror/memos-litestream:latest"
 ```
 
-## 安装 flyctl
+## 安装指南
 
 1. 按照[说明](https://fly.io/docs/getting-started/installing-flyctl/)安装 fly 的命令行界面 `flyctl`。
 2. 按照[说明](https://fly.io/docs/getting-started/log-in-to-fly/) 登录 flyctl。
