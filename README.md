@@ -10,7 +10,8 @@
 
   - [fly.io](https://fly.io/) account
   - [Backblaze](https://www.backblaze.com/) account or other B2 service account 
-  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).*
+  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build).*
+  - If you want to deploy memos with litestream locally, please use [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
 ## Install flyctl
 

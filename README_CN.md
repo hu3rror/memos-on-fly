@@ -10,7 +10,8 @@
 
   - [fly.io](https://fly.io/) 帐户
   - [Backblaze](https://www.backblaze.com/)帐户或其他 S3 服务帐户
-  - [可选] *如果要构建自己的Docker镜像，请从[hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)克隆存储库。*
+  - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build)克隆存储库
+  - 如果你想要在本地搭建，而并非在 fly.io 上搭建，请使用 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
 
 ## 安装 flyctl
 
