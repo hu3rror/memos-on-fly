@@ -4,14 +4,25 @@
 
 > 在[fly.io](https://fly.io/)上运行自托管的 [memos](https://github.com/usememos/memos)，并附有 [litestream](https://litestream.io/)自动备份数据库到你个人的 S3 / [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)。
 
-🙏 感谢 [memos](https://github.com/usememos/memos) 和 [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly)，本项目受其启发！
+🙏 感谢 [memos](https://github.com/usememos/memos) 和 [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly)，本项目受其启发！如果你想要在本地搭建，而并非在 fly.io 上搭建，请使用 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
 
 ## 前提
 
   - [fly.io](https://fly.io/) 帐户
   - [Backblaze](https://www.backblaze.com/)帐户或其他 S3 服务帐户
   - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build)克隆存储库
-  - 如果你想要在本地搭建，而并非在 fly.io 上搭建，请使用 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
+  - 
+
+### ⚠️ **警告**
+[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 将在不久的将来被弃用，维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+
+如果你以前使用过这个镜像，你可以简单地将你的 fly.toml 中 build image 部分删除旧的镜像，并改为新的镜像，像这样：
+
+```diff
+[build]
+- image = "hu3rror/memos-fly:latest"
++ image = "ghcr.io/hu3rror/memos-litestream:latest"
+```
 
 ## 安装 flyctl
 

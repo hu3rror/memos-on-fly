@@ -4,14 +4,25 @@
 
 > Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
 
-🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it.
+🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it. If you want to deploy memos with litestream locally, please use [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
 ## Prerequisites
 
   - [fly.io](https://fly.io/) account
   - [Backblaze](https://www.backblaze.com/) account or other B2 service account 
-  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build).*
-  - If you want to deploy memos with litestream locally, please use [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build).* 
+  
+### ⚠️ **WARNING**
+[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) Will be deprecated in the near future and maintenance updates will be moved to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+
+If you have used this image before, you can simply change the build image section of your fly.toml to the new image like this:
+
+```diff
+[build]
+-  image = "hu3rror/memos-fly:latest"
++  image = "ghcr.io/hu3rror/memos-litestream:latest"
+```
+
 
 ## Install flyctl
 
