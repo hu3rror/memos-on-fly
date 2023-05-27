@@ -1,6 +1,6 @@
 # memos on fly
 
-[English](README.md) | [中文](README_CN.md)
+English | [中文](README_CN.md)
 
 > Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
 
