@@ -4,7 +4,7 @@
 
 > 在[fly.io](https://fly.io/)上运行自托管的 [memos](https://github.com/usememos/memos)，并附有 [litestream](https://litestream.io/)自动备份数据库到你个人的 S3 / [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)。
 
-🙏 感谢 [memos](https://github.com/usememos/memos) 和 [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly)，本项目受其启发！如果你想要在本地搭建，而并非在 fly.io 上搭建，请使用 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
+🙏 感谢 [memos](https://github.com/usememos/memos) 和 [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly)，本项目受其启发！如果你想要在本地搭建（包含 Litestream 功能），请参考 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
 
 ## 前提
 
@@ -13,7 +13,7 @@
   - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build)克隆存储库，找到最新的 release 的 commit，按你所需自行构建
 
 ### ⚠️ **警告**
-[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 将在不久的将来被弃用，维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 已被弃用，新的项目镜像维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
 如果你以前使用过这个镜像，你可以简单地在你的 fly.toml 中的 build image 部分中删除旧的镜像，并改为新的镜像，像这样：
 
@@ -58,7 +58,6 @@
 
   ```toml
   [env]
-    DB_PATH = "/var/opt/memos/memos_prod.db"  # 不要更改
     LITESTREAM_REPLICA_BUCKET = "<filled_later>"  # 更改为您的 litestream bucket 名称
     LITESTREAM_REPLICA_ENDPOINT = "<filled_later>"  # 更改为您的 litestream ENDPOINT 网址
     LITESTREAM_REPLICA_PATH = "memos_prod.db"  # 建议保持默认值
@@ -91,7 +90,6 @@
       [[mounts]]
         source = "memos_data"
         destination = "/var/opt/memos"
-        processes = ["app"]
       ```
 
 #### 5. 将 `internal_port` 添加到 `[[services]]` 中
