@@ -10,7 +10,7 @@
 
   - [fly.io](https://fly.io/) 帐户
   - [Backblaze](https://www.backblaze.com/)帐户或其他 S3 服务帐户
-  - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build)克隆存储库，找到最新的 release 的 commit，按你所需自行构建
+  - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream) 克隆存储库，找到最新的 release 的 commit，按你所需自行构建
 
 ### ⚠️ **警告**
 [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 已被弃用，新的项目镜像维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
