@@ -4,16 +4,16 @@ English | [中文](README_CN.md)
 
 > Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
 
-🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it. If you want to deploy memos with litestream locally, please use [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it. If you want to deploy memos with litestream function locally, please visit [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
 ## Prerequisites
 
   - [fly.io](https://fly.io/) account
   - [Backblaze](https://www.backblaze.com/) account or other B2 service account 
-  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build).* 
+  - [Optional] *If you want to build your own docker image, clone repository from [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).* 
   
 ### ⚠️ **WARNING**
-[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) Will be deprecated in the near future and maintenance updates will be moved to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) has been deprecated and the maintenance is moved to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
 
 If you have used this image before, you can simply change the build image section of your fly.toml to the new image like this:
 
@@ -60,7 +60,6 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
 
   ```toml
   [env]
-    DB_PATH = "/var/opt/memos/memos_prod.db"  # do not change
     LITESTREAM_REPLICA_BUCKET = "<filled_later>"  # change to your litestream bucket name
     LITESTREAM_REPLICA_ENDPOINT = "<filled_later>"  # change to your litestream endpoint url
     LITESTREAM_REPLICA_PATH = "memos_prod.db"  # keep the default or change to whatever path you want
@@ -93,7 +92,6 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
       [[mounts]]
         source = "memos_data"
         destination = "/var/opt/memos"
-        processes = ["app"]
       ```
 
 #### 5. Add `internal_port` to `[[services]]`
