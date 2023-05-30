@@ -2,18 +2,11 @@
 
 app = "memos_example"     # change to whatever name you want if the name is not occupied
 primary_region = "hkg"     # server region
-kill_signal = "SIGINT"
-kill_timeout = "5s"
-
-[experimental]
-  auto_rollback = true
 
 [build]
   image = "ghcr.io/hu3rror/memos-litestream:latest"     # Do not change unless you build your own image
 
 [env]
-  DB_PATH = "/var/opt/memos/memos_prod.db" # do not change
-
   # Details see: https://litestream.io/guides/backblaze/
   LITESTREAM_REPLICA_BUCKET = "your_bucket_name"     # change to your litestream bucket name
   LITESTREAM_REPLICA_ENDPOINT = "s3.us-west-000.backblazeb2.com"     # change to your litestream endpoint url
@@ -22,29 +15,10 @@ kill_timeout = "5s"
 [[mounts]]
   source = "memos_data"     # change to your fly.io volume name
   destination = "/var/opt/memos"     # do not change
-  processes = ["app"]
 
-[[services]]
-  protocol = "tcp"
-  internal_port = 5230     # change to `5230`
-  processes = ["app"]
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 25
-    soft_limit = 20
-
-  [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
-    restart_limit = 0
-
+[http_service]
+  internal_port = 5230   # change to 5230
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
