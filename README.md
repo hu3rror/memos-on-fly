@@ -97,8 +97,8 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
 #### 5. Add `internal_port` to `[[services]]`
 
 ```toml
-[[services]]
-  internal_port = 5230     # change to `5230`
+[http_service]
+  internal_port = 5230   # change to 5230
 ```
 
 #### 6. Deploy to fly.io
