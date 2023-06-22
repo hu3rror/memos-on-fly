@@ -95,8 +95,8 @@
 #### 5. 将 `internal_port` 添加到 `[[services]]` 中
 
 ```toml
-[[services]]
-  internal_port = 5230     # change to `5230`
+[http_service]
+  internal_port = 5230   # change to 5230
 ```
 
 #### 6. 部署到 fly.io
