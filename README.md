@@ -184,3 +184,12 @@ Check the output of `flyctl doctor`, every line should be marked as **PASSED**. 
 ### fly does not pull in the latest version of memos
 
 Just run `flyctl deploy --no-cache`
+
+### Memos Telegram bot does not respond
+
+This is due to the fly.toml v2 update, you can modify your fly.toml like:
+
+```toml
+[http_service]
+  auto_stop_machines = false   # change to `false` if you use telegram bot
+```
