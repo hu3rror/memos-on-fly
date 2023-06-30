@@ -148,3 +148,12 @@ Litestream 通过将其 [WAL（Write-ahead logging）](https://en.wikipedia.org/
    注意：`/dev/vda1`是文件系统所在的设备名称。如果您的设备名称不同，请相应地更改此命令。
 
 3. 检查文件系统是否已成功扩展。您可以运行`df -h`命令来查看文件系统的容量和使用情况。如果一切正常，您应该看到文件系统的可用空间已经增加了。
+
+### Memos Telegram 机器人不响应，不回复
+
+由于 fly.toml 更新到 v2 版本，默认开启 auto_stop_machines，你可以手动修改 fly.toml:
+
+```toml
+[http_service]
+  auto_stop_machines = false   # 修改为 `false`，如果你使用 telegram bot
+```
