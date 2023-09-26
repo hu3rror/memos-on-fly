@@ -1,0 +1,18 @@
+### !!! Please read the content of the comments and modify the corresponding content !!! ###
+
+app = "memos_example"                       # change to whatever name you want if the name is not occupied
+primary_region = "nrt"                      # server region
+
+[build]
+  image = "ghcr.io/usememos/memos:latest"   # Do not change unless you build your own image
+
+[[mounts]]
+  source = "memos_data"                     # change to your fly.io volume's name
+  destination = "/var/opt/memos"            # do not change
+
+[http_service]
+  internal_port = 5230                      # change to 5230
+  force_https = true
+  auto_stop_machines = false                # change to `false` if you use telegram bot
+  auto_start_machines = true
+  min_machines_running = 0

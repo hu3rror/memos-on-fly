@@ -2,9 +2,14 @@
 
 English | [中文](README_zh-CN.md)
 
-> Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
+Run the self-hosted memo service [memos](https://github.com/usememos/memos) on [fly.io](https://fly.io/). Automatically backup the database to [B2](https://www.backblaze.com/b2/cloud-storage.html) with [litestream](https://litestream.io/).
 
-🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it. If you want to deploy memos with litestream function locally, please visit [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
+🙏 Thanks for [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly), the project is inspired by it. 
+
+## IMPORTANT NOTE
+
+If you want to deploy memos without litestream on fly.io (Memos Official images), please view [README_no_litestream](README_no_litestream.md) to get started. Skip the rest of this README document.
+
 
 ## Prerequisites
 
