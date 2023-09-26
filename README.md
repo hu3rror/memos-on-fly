@@ -50,7 +50,7 @@ This command creates a `fly.toml` file.
 
 ## Edit your `fly.toml`
 
-You can take [fly.example.toml](fly.example.toml) in this repository as a reference and modify according to the comments.
+You can take [fly.with.litestream.example.toml](fly.with.litestream.example.toml) in this repository as a reference and modify according to the comments.
 
 ### Details of manual modifications
 
