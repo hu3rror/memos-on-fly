@@ -54,3 +54,5 @@ flyctl deploy --ha=false
 ```shell
 flyctl scale memory 512
 ```
+
+Hope this is helpful for you! ^-^
