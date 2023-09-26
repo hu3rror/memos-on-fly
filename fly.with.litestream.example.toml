@@ -1,0 +1,24 @@
+### !!! Please read the content of the comments and modify the corresponding content !!! ###
+
+app = "memos_example"                                 # change to whatever name you want if the name is not occupied
+primary_region = "nrt"                                # server region
+
+[build]
+  image = "ghcr.io/hu3rror/memos-litestream:latest"   # Do not change unless you build your own image
+
+[env]
+  # Details see: https://litestream.io/guides/backblaze/
+  LITESTREAM_REPLICA_BUCKET = "your_bucket_name"                  # change to your litestream bucket name
+  LITESTREAM_REPLICA_ENDPOINT = "s3.us-west-000.backblazeb2.com"  # change to your litestream endpoint url
+  LITESTREAM_REPLICA_PATH = "memos_prod.db"                       # keep the default or change to whatever path you want
+
+[[mounts]]
+  source = "memos_data"                               # change to your fly.io volume's name
+  destination = "/var/opt/memos"                      # do not change
+
+[http_service]
+  internal_port = 5230                                # change to 5230
+  force_https = true
+  auto_stop_machines = false                          # change to `false` if you use telegram bot
+  auto_start_machines = true
+  min_machines_running = 0
