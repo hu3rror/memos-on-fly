@@ -4,7 +4,7 @@ app = "memos_example"                                 # change to whatever name 
 primary_region = "nrt"                                # server region
 
 [build]
-  image = "ghcr.io/hu3rror/memos-litestream:latest"   # Do not change unless you build your own image
+  image = "ghcr.io/hu3rror/memos-litestream:stable"   # Do not change unless you build your own image
 
 [env]
   # Details see: https://litestream.io/guides/backblaze/
