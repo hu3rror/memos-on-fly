@@ -4,7 +4,7 @@ app = "memos_example"                       # change to whatever name you want i
 primary_region = "nrt"                      # server region
 
 [build]
-  image = "ghcr.io/usememos/memos:latest"   # Do not change unless you build your own image
+  image = "ghcr.io/usememos/memos:stable"   # Do not change unless you build your own image
 
 [[mounts]]
   source = "memos_data"                     # change to your fly.io volume's name
