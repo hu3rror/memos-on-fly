@@ -25,7 +25,7 @@ If you have used this image before, you can simply change the build image sectio
 ```diff
 [build]
 -  image = "hu3rror/memos-fly:latest"
-+  image = "ghcr.io/hu3rror/memos-litestream:latest"
++  image = "ghcr.io/hu3rror/memos-litestream:stable"
 ```
 
 The new image is universal for both fly.io and local runs~
@@ -58,7 +58,7 @@ You can take [fly.with.litestream.example.toml](fly.with.litestream.example.toml
 
   ```toml
   [build]
-    image = "ghcr.io/hu3rror/memos-litestream:latest"
+    image = "ghcr.io/hu3rror/memos-litestream:stable"
   ```
 
 #### 2. Add an `env` section.
