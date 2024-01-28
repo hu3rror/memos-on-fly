@@ -25,7 +25,7 @@
 ```diff
 [build]
 - image = "hu3rror/memos-fly:latest"
-+ image = "ghcr.io/hu3rror/memos-litestream:latest"
++ image = "ghcr.io/hu3rror/memos-litestream:stable"
 ```
 
 ## 安装指南
@@ -56,7 +56,7 @@
 
   ```toml
   [build]
-    image = "ghcr.io/hu3rror/memos-litestream:latest"
+    image = "ghcr.io/hu3rror/memos-litestream:stable"
   ```
 
 #### 2. 添加 `env` 部分。
