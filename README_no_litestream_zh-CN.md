@@ -1,59 +1,59 @@
-## 将 Memos 官方镜像部署到 fly.io
+# 在 fly.io 上部署 Memos 官方镜像
 
-### 前提条件
+## 先决条件
 
-* 一个 fly.io 账户（需要信用卡）。
+- 拥有 fly.io 账户，可访问 https://fly.io/（需要有效信用卡）。
 
-### 安装
+## 安装步骤
 
-1. 安装 flyctl CLI：https://fly.io/docs/getting-started/installing-flyctl/ (必要时可借助网页翻译工具)。
-2. 登录 flyctl：https://fly.io/docs/getting-started/log-in-to-fly/ (必要时可借助网页翻译工具)。
+1. 按照 https://fly.io/docs/getting-started/installing-flyctl/ 上的指南安装 flyctl 命令行工具。
+2. 使用以下命令登录 flyctl：
 
 ```sh
 flyctl auth login
 ```
 
-3. 克隆此存储库：
+3. 使用以下命令克隆存储库：
 
 ```shell
 git clone https://github.com/hu3rror/memos-on-fly
 ```
 
-4. 将 `fly.no.litestream.example.toml` 文件重命名为 `fly.toml` 并填写或修改其中的内容。
-5. 初始化应用程序：
+4. 将 `fly.no.litestream.example.toml` 文件重命名为 `fly.toml` 并填写或修改必要的值。
+5. 使用以下命令启动和初始化应用程序：
 
 ```shell
 flyctl launch
 ```
 
-6. 在提示 `Would you like to copy its configuration to the new app?` 时，请输入 `Y` 确认。
-7. 之后会提示输入你的应用程序名称。名称必须是唯一的且不冲突。
-8. 在提示设置 Postgresql 数据库和 Upstash Redis 时，请输入 `N` 确认（此应用程序不需要这些数据库）。
-9. 查看 `fly.toml` 中的部署配置。如果没有问题，可输入 `Y` 直接开始部署应用程序。否则，请输入 `N`，先正确编辑该文件。
-10. 如果您已经完成编辑了 `fly.toml` 文件，可部署应用程序：
+6. 在提示 `Would you like to copy its configuration to the new app?` 时，键入 `Y` 以确认。
+7. 输入一个独特且不冲突的应用程序名称。
+8. 当要求设置 Postgresql 数据库或 Upstash Redis 数据库时，键入 `N` 以拒绝，因为它们对此应用程序不必要。
+9. 检查 `fly.toml` 中的部署配置，如果正确，键入 `Y` 以部署应用程序；否则，键入 `N` 后再对文件进行编辑。
+10. 最后，请使用以下命令部署应用程序：
 
 ```shell
 flyctl deploy
 ```
 
-11. 等待几分钟让应用程序部署完毕，然后在 `https://<your-app-name>.fly.dev` 访问它。您也可以通过运行以下命令在浏览器中打开应用程序：
+11. 等待几分钟，应用程序部署完成后，访问 `https://<your-app-name>.fly.dev`。也可以使用以下命令在浏览器中打开应用程序：
 
 ```shell
 flyctl open
 ```
 
-### 一些具体建议
+## 一些建议：
 
-- 如果您只想在 fly.io 上只使用一台机器部署 (V2默认会新建两个机器machines)，可以使用以下命令（注意：不推荐）：
+- 如果只想使用一台机器部署，请使用以下命令（注意：不建议此操作）：
 
 ```shell
 flyctl deploy --ha=false
 ```
 
-- 如果您想扩大应用程序的内存（MiB），可以使用以下命令：
+- 如果要增加应用程序的内存（MiB），请使用以下命令：
 
 ```shell
 flyctl scale memory 512
 ```
 
-希望这对你有帮助！~
+希望这些信息对您有所帮助！
