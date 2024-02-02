@@ -6,9 +6,9 @@
 
 🙏 感谢 [memos](https://github.com/usememos/memos) 和 [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly)，本项目受其启发！
 
-## 重要提示
+## 重要提示！
 
-- 如果您想在 Fly.io 上部署 Memos，但不需要 Litestream 来自动备份数据库到你的 S3/B2，请跳过本 README 文档的其余部分，直接阅读 [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md) 这篇安装指南。
+- 如果您想在 Fly.io 上部署 Memos，但不需要 Litestream 来自动备份数据库到你的 S3/B2，请跳过本 README 文档的其余部分，直接阅读 [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md)。
 - 如果你想要在本地搭建（包含 Litestream 功能），请参考 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
 
 ## 前提
