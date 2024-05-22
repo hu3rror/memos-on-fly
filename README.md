@@ -6,38 +6,42 @@ Deploy the self-hosted memo service, [memos](https://github.com/usememos/memos),
 
 Acknowledgments to [linkding-on-fly](https://github.com/fspoettel/linkding-on-fly) for inspiring this project.
 
-## IMPORTANT NOTICE
+## Important Notice!
 
-To deploy memos without litestream on fly.io (Memos Official images), refer to [README_no_litestream](README_no_litestream.md) for instructions. Skip the remainder of this README document.
+- If you want to deploy Memos on Fly.io but do not need Litestream to automatically back up your database to your S3/B2, skip the following part of this document and read [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md) directly.
+- If you want to set up locally (including Litestream functionality) instead of on fly.io, you can refer to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).
+- [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) is deprecated, and the new project image maintenance updates will be transferred to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream). If you have used this image before, you can simply delete the old image in the build image section of your fly.toml and replace it with the new image, like this:
+
+  ```diff
+  [build]
+  - image = "hu3rror/memos-fly:latest"
+  + image = "ghcr.io/hu3rror/memos-litestream:stable"
+  ```
+- After updating to Memos v0.22.0, the Telegram Bot will no longer be built into Memos but will be started externally as [telegram-integration](https://github.com/usememos/telegram-integration). If you need this feature, please change the image tag to `ghcr.io/hu3rror/memos-litestream:stable-memogram`, like this:
+
+  ```diff
+  [build]
+  - image = "ghcr.io/hu3rror/memos-litestream:stable"
+  + image = "ghcr.io/hu3rror/memos-litestream:stable-memogram"
+  ```
+  And add a new environment variable `MEMOGRAM_BOT_TOKEN` to flyctl secrets in fly.io and deploy again.
+  ```sh
+  flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
+  ```
 
 ## Prerequisites
 
 - [fly.io](https://fly.io/) account
 - [Backblaze](https://www.backblaze.com/) account or another B2 service account
-- [Optional] If building your docker image, clone the repository from [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).
+- Follow [the instructions](https://fly.io/docs/getting-started/installing-flyctl/) to install fly's command-line interface `flyctl`.
+- [Log into flyctl](https://fly.io/docs/getting-started/log-in-to-fly/).
 
-### ⚠️ **WARNING**
+  ```sh
+  flyctl auth login
+  ```
 
-[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) is deprecated. Maintenance has moved to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).
+- *[Optional]* If building your docker image, clone the repository from [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).
 
-If you previously used this image, change the build image section in your fly.toml to the new image:
-
-```diff
-[build]
--  image = "hu3rror/memos-fly:latest"
-+  image = "ghcr.io/hu3rror/memos-litestream:stable"
-```
-
-The new image is universal for both fly.io and local runs.
-
-## Installation
-
-1. Follow [the instructions](https://fly.io/docs/getting-started/installing-flyctl/) to install fly's command-line interface `flyctl`.
-2. [Log into flyctl](https://fly.io/docs/getting-started/log-in-to-fly/).
-
-```sh
-flyctl auth login
-```
 
 ## Launch a fly application
 

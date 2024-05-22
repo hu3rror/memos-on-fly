@@ -8,33 +8,38 @@
 
 ## 重要提示！
 
-- 如果您想在 Fly.io 上部署 Memos，但不需要 Litestream 来自动备份数据库到你的 S3/B2，请跳过本 README 文档的其余部分，直接阅读 [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md)。
-- 如果你想要在本地搭建（包含 Litestream 功能），请参考 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
+- 如果您想在 Fly.io 上部署 Memos，但不需要 Litestream 来自动备份数据库到你的 S3/B2，请跳过本文档接下来的部分，并直接阅读 [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md)。
+- 如果你想要在本地搭建（包含 Litestream 功能），而不在 fly.io 上搭建，可参考 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)。
+- [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 已被弃用，新的项目镜像维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)，如果你以前使用过这个镜像，你可以简单地在你的 fly.toml 中的 build image 部分中删除旧的镜像，并改为新的镜像，像这样：
 
-## 前提
+  ```diff
+  [build]
+  - image = "hu3rror/memos-fly:latest"
+  + image = "ghcr.io/hu3rror/memos-litestream:stable"
+  ```
+- Memos 在更新到 v0.22.0 版本后，Telegram Bot 将不再内置在 Memos 中，而转为外置启动的 [telegram-integration](https://github.com/usememos/telegram-integration) ，如果你需要该功能，请将镜像标签更改为 `ghcr.io/hu3rror/memos-litestream:stable-memogram`，像这样：
+
+  ```diff
+  [build]
+  - image = "ghcr.io/hu3rror/memos-litestream:stable"
+  + image = "ghcr.io/hu3rror/memos-litestream:stable-memogram"
+  ```
+  并在 fly.io 中添加新的环境变量 `MEMOGRAM_BOT_TOKEN` 到 flyctl secrets 中，并重新部署
+  ```sh
+  flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
+  ```
+
+## 安装前提
 
   - [fly.io](https://fly.io/) 帐户
   - [Backblaze](https://www.backblaze.com/)帐户或其他 S3 服务帐户
-  - [可选] 如果要构建自己的Docker镜像，请从[hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream) 克隆存储库，找到最新的 release 的 commit，按你所需自行构建
-
-### ⚠️ **警告**
-[hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) 已被弃用，新的项目镜像维护更新将被转移到 [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream)
-
-如果你以前使用过这个镜像，你可以简单地在你的 fly.toml 中的 build image 部分中删除旧的镜像，并改为新的镜像，像这样：
-
-```diff
-[build]
-- image = "hu3rror/memos-fly:latest"
-+ image = "ghcr.io/hu3rror/memos-litestream:stable"
-```
-
-## 安装指南
-
-1. 按照[说明](https://fly.io/docs/getting-started/installing-flyctl/)安装 fly 的命令行界面 `flyctl`。
-2. 按照[说明](https://fly.io/docs/getting-started/log-in-to-fly/) 登录 flyctl。
+  - 按照 [fly.io 官方安装教程](https://fly.io/docs/getting-started/installing-flyctl/)安装 fly 的命令行界面 `flyctl`。
+  - 按照 [fly.io 官方登录教程](https://fly.io/docs/getting-started/log-in-to-fly/) 登录 flyctl。
     ```sh
     flyctl auth login
     ```
+  - *[可选]* 如果要构建自己的Docker镜像，请从[hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream) 克隆存储库，找到最新的 release 的 commit，按你所需自行构建
+
 
 ## 初始化 fly app
 
@@ -63,9 +68,9 @@
 
   ```toml
   [env]
-    LITESTREAM_REPLICA_BUCKET = "<filled_later>"  # 更改为您的 litestream bucket 名称
-    LITESTREAM_REPLICA_ENDPOINT = "<filled_later>"  # 更改为您的 litestream ENDPOINT 网址
-    LITESTREAM_REPLICA_PATH = "memos_prod.db"  # 建议保持默认值
+    LITESTREAM_REPLICA_BUCKET = "your_bucket_name"  # 更改为您的 litestream bucket 名称
+    LITESTREAM_REPLICA_ENDPOINT = "your_endpoint"  # 更改为您的 litestream ENDPOINT 网址
+    LITESTREAM_REPLICA_PATH = "memos_prod.db"  # 如果不了解请保持默认值
   ```
 
 #### 3. 配置 litestream 备份
@@ -74,9 +79,9 @@
 
   1. 登录 B2 并[创建一个bucket](https://litestream.io/guides/backblaze/#create-a-bucket)。
   2. 将 `LITESTREAM_REPLICA_ENDPOINT` 和 `LITESTREAM_REPLICA_BUCKET` 的值设置到您的 `[env]` 部分。
-  3. 为此 bucket 创建[访问密钥](https://litestream.io/guides/backblaze/#create-a-user)。将密钥添加到fly的密钥存储中（⚠️ 不包含 `<` 和 `>`）。
+  3. 为此 bucket 创建[访问密钥](https://litestream.io/guides/backblaze/#create-a-user)。将密钥添加到fly的密钥存储中。
       ```sh
-      flyctl secrets set LITESTREAM_ACCESS_KEY_ID="<keyId>" LITESTREAM_SECRET_ACCESS_KEY="<applicationKey>"
+      flyctl secrets set LITESTREAM_ACCESS_KEY_ID="your_key_id" LITESTREAM_SECRET_ACCESS_KEY="your_application_key"
       ```
 
 #### 4. 添加持久卷
