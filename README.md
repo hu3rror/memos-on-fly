@@ -17,7 +17,7 @@ Acknowledgments to [linkding-on-fly](https://github.com/fspoettel/linkding-on-fl
   - image = "hu3rror/memos-fly:latest"
   + image = "ghcr.io/hu3rror/memos-litestream:stable"
   ```
-- After updating to Memos v0.22.0, the Telegram Bot will no longer be built into Memos but will be started externally as [telegram-integration](https://github.com/usememos/telegram-integration). If you need this feature, please change the image tag to `ghcr.io/hu3rror/memos-litestream:stable-memogram`, like this:
+- After updating to Memos v0.22.0, the Telegram Bot will no longer be built into Memos but will be started externally as [telegram-integration](https://github.com/usememos/telegram-integration). If you need this feature, you could change the image tag to `ghcr.io/hu3rror/memos-litestream:stable-memogram`, like this:
 
   ```diff
   [build]
@@ -28,6 +28,7 @@ Acknowledgments to [linkding-on-fly](https://github.com/fspoettel/linkding-on-fl
   ```sh
   flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
   ```
+  ⚠️ The `stable-memogram` tag version is still in the testing phase, please back up your database before use.
 
 ## Prerequisites
 

@@ -17,7 +17,7 @@
   - image = "hu3rror/memos-fly:latest"
   + image = "ghcr.io/hu3rror/memos-litestream:stable"
   ```
-- Memos 在更新到 v0.22.0 版本后，Telegram Bot 将不再内置在 Memos 中，而转为外置启动的 [telegram-integration](https://github.com/usememos/telegram-integration) ，如果你需要该功能，请将镜像标签更改为 `ghcr.io/hu3rror/memos-litestream:stable-memogram`，像这样：
+- Memos 在更新到 v0.22.0 版本后，Telegram Bot 将不再内置在 Memos 中，而转为外置启动的 [telegram-integration](https://github.com/usememos/telegram-integration) ，如果你需要该功能，可尝试将镜像标签更改为 `ghcr.io/hu3rror/memos-litestream:stable-memogram`，像这样：
 
   ```diff
   [build]
@@ -28,6 +28,7 @@
   ```sh
   flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
   ```
+  ⚠️`stable-memogram` 标签版本的支持仍处于测试阶段，使用前务必备份您的数据库。
 
 ## 安装前提
 
