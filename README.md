@@ -8,7 +8,7 @@ Acknowledgments to [linkding-on-fly](https://github.com/fspoettel/linkding-on-fl
 
 ## Important Notice!
 
-- If you want to deploy Memos on Fly.io but do not need Litestream to automatically back up your database to your S3/B2, skip the following part of this document and read [README_no_litestream_zh-CN](README_no_litestream_zh-CN.md) directly.
+- If you want to deploy Memos on Fly.io but do not need Litestream to automatically back up your database to your S3/B2, skip the following part of this document and read [README_no_litestream](README_no_litestream.md) directly.
 - If you want to set up locally (including Litestream functionality) instead of on fly.io, you can refer to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream).
 - [hu3rror/memos-on-fly-build](https://github.com/hu3rror/memos-on-fly-build) is deprecated, and the new project image maintenance updates will be transferred to [hu3rror/memos-litestream](https://github.com/hu3rror/memos-litestream). If you have used this image before, you can simply delete the old image in the build image section of your fly.toml and replace it with the new image, like this:
 
