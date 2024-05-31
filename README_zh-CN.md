@@ -24,9 +24,9 @@
   - image = "ghcr.io/hu3rror/memos-litestream:stable"
   + image = "ghcr.io/hu3rror/memos-litestream:stable-memogram"
   ```
-  并在 fly.io 中添加新的环境变量 `MEMOGRAM_BOT_TOKEN` 到 flyctl secrets 中，并重新部署
+  并在 fly.io 中添加新的环境变量 `BOT_TOKEN` 到 flyctl secrets 中，并重新部署
   ```sh
-  flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
+  flyctl secrets set BOT_TOKEN="your_bot_token"
   ```
   ⚠️`stable-memogram` 标签版本的支持仍处于测试阶段，使用前务必备份您的数据库。
 
@@ -89,7 +89,7 @@
 
   1. 创建[持久卷](https://fly.io/docs/reference/volumes/)。fly.io 的免费套餐包含 `3GB`存储空间，而`memos` 若采用纯文本+外挂图床的方式，则所需要的存储空间非常少，大多数情况下`1GB`的卷已经足够了。您也可以在稍后更改卷的大小。如何更改可以在下面的_"scale persistent volume"_部分找到。
       ```sh
-      flyctl volumes create memos_data --region <your_region> --size <size_in_gb>
+      flyctl volumes create memos_data --region your_region --size size_in_GB
       ```
       例子：
         ```sh

@@ -24,9 +24,9 @@ Acknowledgments to [linkding-on-fly](https://github.com/fspoettel/linkding-on-fl
   - image = "ghcr.io/hu3rror/memos-litestream:stable"
   + image = "ghcr.io/hu3rror/memos-litestream:stable-memogram"
   ```
-  And add a new environment variable `MEMOGRAM_BOT_TOKEN` to flyctl secrets in fly.io and deploy again.
+  And add a new environment variable `BOT_TOKEN` to flyctl secrets in fly.io and deploy again.
   ```sh
-  flyctl secrets set MEMOGRAM_BOT_TOKEN="your_bot_token"
+  flyctl secrets set BOT_TOKEN="your_bot_token"
   ```
   ⚠️ The `stable-memogram` tag version is still in the testing phase, please back up your database before use.
 
@@ -71,8 +71,8 @@ Use [fly.with.litestream.example.toml](fly.with.litestream.example.toml) in this
 
 ```toml
 [env]
-  LITESTREAM_REPLICA_BUCKET = "<filled_later>"  # change to your litestream bucket name
-  LITESTREAM_REPLICA_ENDPOINT = "<filled_later>"  # change to your litestream endpoint URL
+  LITESTREAM_REPLICA_BUCKET = "To_be_filled_in_later."  # change to your litestream bucket name
+  LITESTREAM_REPLICA_ENDPOINT = "To_be_filled_in_later"  # change to your litestream endpoint URL
   LITESTREAM_REPLICA_PATH = "memos_prod.db"  # keep the default or change to whatever path you want
 ```
 
@@ -82,10 +82,10 @@ Use [fly.with.litestream.example.toml](fly.with.litestream.example.toml) in this
 
 1. Log into B2 and [create a bucket](https://litestream.io/guides/backblaze/#create-a-bucket). Instead of adjusting the litestream config directly, add storage configuration to `fly.toml`.
 2. Set the values of `LITESTREAM_REPLICA_ENDPOINT` and `LITESTREAM_REPLICA_BUCKET` to your `[env]` section.
-3. Create [an access key](https://litestream.io/guides/backblaze/#create-a-user) for this bucket. Add the key to fly's secret store (Don't add `<` and `>`).
+3. Create [an access key](https://litestream.io/guides/backblaze/#create-a-user) for this bucket. Add the key to fly's secret store.
 
 ```sh
-flyctl secrets set LITESTREAM_ACCESS_KEY_ID="<keyId>" LITESTREAM_SECRET_ACCESS_KEY="<applicationKey>"
+flyctl secrets set LITESTREAM_ACCESS_KEY_ID="your_key_Id" LITESTREAM_SECRET_ACCESS_KEY="your_application_Key"
 ```
 
 #### 4. Add a persistent volume
@@ -93,7 +93,7 @@ flyctl secrets set LITESTREAM_ACCESS_KEY_ID="<keyId>" LITESTREAM_SECRET_ACCESS_K
 1. Create a [persistent volume](https://fly.io/docs/reference/volumes/). Fly's free tier includes `3GB` of storage across your VMs. Since `memos` is very light on storage, a `1GB` volume will be more than enough for most use cases. Change the volume size later if needed. Find instructions in the _"scale persistent volume"_ section below.
 
 ```sh
-flyctl volumes create memos_data --region <your_region> --size <size_in_gb>
+flyctl volumes create memos_data --region your_region --size size_in_GB
 ```
 
 For example:
@@ -167,7 +167,7 @@ List all fly volumes and note the id of the `memos_data` volume. Then, delete th
 
 ```sh
 flyctl volumes list
-flyctl volumes delete <id>
+flyctl volumes delete your_vol_id
 ```
 
 This will result in a **dead** VM after a few seconds. Create a new `memos_data` volume. Your application should automatically attempt to restart. If not, restart it manually.
