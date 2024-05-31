@@ -56,7 +56,7 @@ This command creates a `fly.toml` file.
 
 ## Edit your `fly.toml`
 
-Use [fly.with.litestream.example.toml](fly.with.litestream.example.toml) in this repository as a reference and modify according to the comments.
+Use [fly_example.toml](fly_example.toml) in this repository as a reference and modify according to the comments.
 
 ### Details of manual modifications
 

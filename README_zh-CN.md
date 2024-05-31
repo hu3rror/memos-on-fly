@@ -54,7 +54,7 @@
 
 ## 编辑 `fly.toml`
 
-您可以参考本存储库中的 [fly.example.toml](fly.example.toml) 并根据注释内容的提示进行修改。
+您可以参考本存储库中的 [fly_example.toml](fly_example.toml) 并根据注释内容的提示进行修改。
 
 ### 手动修改的详细信息
 

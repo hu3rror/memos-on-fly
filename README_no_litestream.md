@@ -19,7 +19,7 @@ flyctl auth login
 git clone https://github.com/hu3rror/memos-on-fly
 ```
 
-4. Rename the `fly.no.litestream.example.toml` file to `fly.toml` and input or modify the necessary values.
+4. Rename the `fly_no_litestream_example.toml` file to `fly.toml` and input or modify the necessary values.
 5. Launch and initialize the application with the command:
 
 ```shell
